@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider as ThemeMaterial, ThemeOptions } from "@mui/material";
+import { DefaultTheme, ThemeProvider } from "styled-components";
+
+import { Loading } from "./components/Loading";
+import { ToastContainerCustom } from "./components/Toasts";
+import { MyRoutes } from "./routes";
+import { useAppSelector } from "./store/hooks";
+import { GlobalStyle } from "./styles/Global";
 
 function App() {
+  const theme = useAppSelector(({ Utils }) => Utils.theme.object);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme as DefaultTheme}>
+      <ThemeMaterial theme={theme as ThemeOptions}>
+        <Loading />
+        <ToastContainerCustom />
+        <MyRoutes />
+        <GlobalStyle />
+      </ThemeMaterial>
+    </ThemeProvider>
   );
 }
 
-export default App;
+export { App };

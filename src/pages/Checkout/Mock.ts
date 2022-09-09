@@ -1,0 +1,58 @@
+export const MoviesMock = [
+  {
+    id: 1,
+    title: "The Shawshank Redemption",
+    dt_lancamento: "10/05/1991",
+    banner:
+      "https://assistironline.net/wp-content/uploads/elementor/thumbs/assistir-Jogos-de-Guerra-O-Codigo-Mortal-2008-online-owe0m7wcszmoofoszl8vfq4mfaqqa4ddfzk9niv5x4.jpg",
+    runtime: "142",
+    genres: ["Crime", "Drama"],
+    director: "Frank Darabont",
+    actors: "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
+    stars: "7",
+    price: "23,00",
+    isFavorite: false,
+  },
+  {
+    id: 2,
+    title: "The Shawshank Redemption",
+    dt_lancamento: "10/05/1991",
+    banner:
+      "https://assistironline.net/wp-content/uploads/elementor/thumbs/assistir-Jogos-de-Guerra-O-Codigo-Mortal-2008-online-owe0m7wcszmoofoszl8vfq4mfaqqa4ddfzk9niv5x4.jpg",
+    runtime: "142",
+    genres: ["Crime", "Drama"],
+    director: "Frank Darabont",
+    actors: "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
+    stars: "7",
+    price: "23,00",
+    isFavorite: true,
+  },
+  // {
+  //   id: 4,
+  //   title: "The Shawshank Redemption",
+  //   dt_lancamento: "10/05/1991",
+  //   banner:
+  //     "https://assistironline.net/wp-content/uploads/elementor/thumbs/assistir-Jogos-de-Guerra-O-Codigo-Mortal-2008-online-owe0m7wcszmoofoszl8vfq4mfaqqa4ddfzk9niv5x4.jpg",
+  //   runtime: "142",
+  //   genres: ["Crime", "Drama"],
+  //   director: "Frank Darabont",
+  //   actors: "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
+  //   stars: "7",
+  //   price: "23,00",
+  //   isFavorite: false,
+  // },
+  // {
+  //   id: 5,
+  //   title: "The Shawshank Redemption",
+  //   dt_lancamento: "10/05/1991",
+  //   banner:
+  //     "https://assistironline.net/wp-content/uploads/elementor/thumbs/assistir-Jogos-de-Guerra-O-Codigo-Mortal-2008-online-owe0m7wcszmoofoszl8vfq4mfaqqa4ddfzk9niv5x4.jpg",
+  //   runtime: "142",
+  //   genres: ["Crime", "Drama"],
+  //   director: "Frank Darabont",
+  //   actors: "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
+  //   stars: "7",
+  //   price: "23,00",
+  //   isFavorite: true,
+  // },
+];
