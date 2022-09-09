@@ -15,6 +15,8 @@ export const Conteiner = styled.div`
 export const Content = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 91vh;
+  margin-top: 9vh;
 `;
 
 export const Body = styled.div`

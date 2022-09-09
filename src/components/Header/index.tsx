@@ -2,13 +2,16 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge, IconButton, Stack } from "@mui/material";
-import { useLayoutEffect } from "react";
+import { Badge, FormControlLabel, IconButton, Stack } from "@mui/material";
+import { ChangeEvent, useLayoutEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { setdDeviceAction } from "../../store/ducks/Utils/actions";
-import { useAppDispatch } from "../../store/hooks";
+import {
+  setdDeviceAction,
+  setThemeAction,
+} from "../../store/ducks/Utils/actions";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { InputSearch } from "../Inputs/InputSearch";
 import * as S from "./styles";
 
@@ -20,8 +23,18 @@ type HeaderProps = {
 export function Header({ onOpenCartBuy, onOpenFavorite }: HeaderProps) {
   const { control } = useForm();
 
+  const {
+    Movies: { cardBuy },
+    Utils: {
+      theme: { mode },
+    },
+  } = useAppSelector((state) => state);
+
   const navegation = useNavigate();
   const dispatch = useAppDispatch();
+
+  const alterTheme = ({ currentTarget }: ChangeEvent<HTMLInputElement>) =>
+    dispatch(setThemeAction(currentTarget.checked ? "dark" : "light"));
 
   useLayoutEffect(() => {
     const onResize = () => {
@@ -64,10 +77,20 @@ export function Header({ onOpenCartBuy, onOpenFavorite }: HeaderProps) {
               <FavoriteIcon color="info" />
             </IconButton>
             <IconButton onClick={onOpenCartBuy}>
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={cardBuy.length} color="secondary">
                 <ShoppingCartIcon color="info" />
               </Badge>
             </IconButton>
+            <FormControlLabel
+              control={
+                <S.MaterialUISwitch
+                  checked={mode === "dark"}
+                  onChange={alterTheme}
+                />
+              }
+              label=""
+              style={{ margin: 0 }}
+            />
           </Stack>
         </S.BoxRight>
       </S.Content>

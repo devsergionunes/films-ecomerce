@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Grid, IconButton, Tooltip } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { ButtonPrimary } from "../../components/base/Buttons";
 import * as T from "../../components/base/Text";
@@ -11,15 +12,28 @@ import { Favorite } from "../../components/Drawer/Favorite";
 import { Header } from "../../components/Header";
 import { InputBase } from "../../components/Inputs/InputText";
 import { ModalSuccessPayment } from "../../components/ModalsComponents/WarningSendSolicitation";
-import { MoviesMock } from "./Mock";
+import { removeCardBuyAction } from "../../store/ducks/Movies/actions";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { formatMoney, totalSumCardBuy } from "../../utils/utils";
 import * as S from "./styles";
 
 export function Checkout() {
   const { control } = useForm();
+  const navegate = useNavigate();
+
   const [openCartBuy, setOpenCartBuy] = useState(false);
   const [openFavorite, setOpenFavorite] = useState(false);
 
   const [openModalSuccesPayment, setOpenModalSuccesPayment] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const { cardBuy } = useAppSelector(({ Movies }) => Movies);
+
+  useEffect(() => {
+    if (!cardBuy.length) {
+      navegate("/");
+    }
+  }, [cardBuy]);
 
   return (
     <S.Conteiner>
@@ -120,42 +134,45 @@ export function Checkout() {
                 <T.Paragraph weight="600">Preço</T.Paragraph>
               </Grid>
             </S.BoxItemCheckout>
-            {MoviesMock.length &&
-              MoviesMock.map((item, index) => (
-                <S.BoxItemCheckout
-                  container
-                  spacing={1}
-                  key={item.id}
-                  {...(index !== MoviesMock.length - 1 && {
-                    paddingBottom: "1rem",
-                    borderBottom: "2px solid #ccc",
-                  })}
-                >
-                  <Grid item xs={2}>
-                    <S.BoxImage url={item.banner} />
-                  </Grid>
-                  <Grid item xs={4} display="flex" alignItems="center">
-                    <T.Paragraph>{item.title}</T.Paragraph>
-                  </Grid>
-                  <Grid item xs={2} display="flex" alignItems="center">
-                    <T.Paragraph textAlign="center">1</T.Paragraph>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={4}
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="space-between"
+            {cardBuy.length
+              ? cardBuy.map((item, index) => (
+                  <S.BoxItemCheckout
+                    container
+                    spacing={1}
+                    key={item.id}
+                    {...(index !== cardBuy.length - 1 && {
+                      paddingBottom: "1rem",
+                      borderBottom: "2px solid #ccc",
+                    })}
                   >
-                    <T.Paragraph>R$: {item.price}</T.Paragraph>
-                    <IconButton>
-                      <Tooltip title="Remover">
-                        <DeleteIcon />
-                      </Tooltip>
-                    </IconButton>
-                  </Grid>
-                </S.BoxItemCheckout>
-              ))}
+                    <Grid item xs={2}>
+                      <S.BoxImage url={item.backdrop_path} />
+                    </Grid>
+                    <Grid item xs={4} display="flex" alignItems="center">
+                      <T.Paragraph>{item.title}</T.Paragraph>
+                    </Grid>
+                    <Grid item xs={2} display="flex" alignItems="center">
+                      <T.Paragraph textAlign="center">1</T.Paragraph>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={4}
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="space-between"
+                    >
+                      <T.Paragraph>R$: {item.price}</T.Paragraph>
+                      <IconButton
+                        onClick={() => dispatch(removeCardBuyAction(item.id))}
+                      >
+                        <Tooltip title="Remover">
+                          <DeleteIcon />
+                        </Tooltip>
+                      </IconButton>
+                    </Grid>
+                  </S.BoxItemCheckout>
+                ))
+              : null}
 
             <S.BoxItemCheckout container spacing={1} marginTop="1rem">
               <Grid item xs={9}>
@@ -165,7 +182,7 @@ export function Checkout() {
               </Grid>
               <Grid item xs={3}>
                 <T.Paragraph weight="600" size="1.3rem" textAlign="end">
-                  59,98
+                  {formatMoney(totalSumCardBuy(cardBuy))}
                 </T.Paragraph>
               </Grid>
               <Grid item xs={12} marginTop="1rem">

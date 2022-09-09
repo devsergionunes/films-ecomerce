@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
+import { removeAllCardBuyAction } from "../../../store/ducks/Movies/actions";
+import { useAppDispatch } from "../../../store/hooks";
 import * as B from "../../base/Buttons";
 import * as T from "../../base/Text";
 import Modal from "../index";
@@ -14,6 +16,7 @@ export function ModalSuccessPayment({
   isOpen,
   onClose,
 }: IModalAddNewStructuredTable) {
+  const dispatch = useAppDispatch();
   const navegate = useNavigate();
 
   return (
@@ -33,7 +36,11 @@ export function ModalSuccessPayment({
             style={{
               width: "100%",
             }}
-            onClick={() => navegate("/")}
+            onClick={() => {
+              dispatch(removeAllCardBuyAction());
+              navegate("/");
+              onClose();
+            }}
           >
             Ir para a loja
           </B.ButtonPrimary>

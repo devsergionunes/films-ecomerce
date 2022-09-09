@@ -10,6 +10,7 @@ export function Drawer({ open, children }: DrawerProps) {
   return (
     <S.DrawerContainer
       sx={{
+        "zIndex": 999,
         "position": "fixed",
         "display": open ? "block" : "none",
         "flexShrink": 0,

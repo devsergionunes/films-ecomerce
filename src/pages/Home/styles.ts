@@ -15,6 +15,7 @@ export const Conteiner = styled.div`
 export const Content = styled.div`
   width: 100%;
   display: flex;
+  margin-top: 9vh;
 `;
 
 export const ContainerMovies = styled.div`
@@ -42,7 +43,7 @@ export const CardMoviesHeader = styled.div<{ url: string }>`
   ${({ url }) => css`
     width: 100%;
     height: 65%;
-    min-height: 65%;
+    min-height: 60%;
     max-height: 65%;
     max-width: 100%;
     position: relative;
@@ -53,12 +54,6 @@ export const CardMoviesHeader = styled.div<{ url: string }>`
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 0.5rem 0.5rem 0 0;
-
-    @media (max-width: 667px) {
-      height: 69%;
-      min-height: 69%;
-      max-height: 69%;
-    }
   `}
 `;
 

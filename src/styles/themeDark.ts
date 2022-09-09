@@ -20,14 +20,18 @@ export default {
   palette: {
     mode: "dark",
     primary: {
-      main: "#006494",
-      light: "rgb(51, 131, 169)",
-      dark: "rgb(0, 70, 103)",
+      main: "#3E2C8A",
+      light: "#9881D9",
+      dark: "#1B115C",
     },
     secondary: {
-      main: "#ff6e07",
-      light: "rgb(255, 139, 56)",
-      dark: "rgb(178, 77, 4)",
+      main: "#00DB03",
+      light: "#89FF66",
+      dark: "#00931A",
+    },
+    info: {
+      main: "#ddd",
+      dark: "#ddd",
     },
   },
   backgroundIcons: "#F0f0f0",
@@ -81,7 +85,7 @@ export default {
       fontWeightBold: 700,
     },
     h6: {
-      fontSize: "1rem",
+      fontSize: "1.3rem",
       fontWeight: 300,
       fontWeightLight: 300,
       fontWeightRegular: 400,
@@ -105,7 +109,7 @@ export default {
       fontWeightBold: 700,
     },
     body1: {
-      fontSize: "1rem",
+      fontSize: "1.2rem",
       fontWeight: 300,
       fontWeightLight: 300,
       fontWeightRegular: 400,

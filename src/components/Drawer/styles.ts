@@ -83,7 +83,7 @@ export const BoxProductImage = styled.div<{ src: string }>`
   ${({ src }) => css`
     width: 50px;
     height: 50px;
-    background-image: url("https://assistironline.net/wp-content/uploads/elementor/thumbs/assistir-Jogos-de-Guerra-O-Codigo-Mortal-2008-online-owe0m7wcszmoofoszl8vfq4mfaqqa4ddfzk9niv5x4.jpg");
+    background-image: url(${src});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
