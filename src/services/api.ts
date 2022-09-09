@@ -3,12 +3,12 @@ import axios from "axios";
 
 import { getSessionId } from "./localStorage";
 
-export const baseUrl = "https://api.themoviedb.org";
+export const baseUrl = process.env.REACT_APP_URL_API;
 
 export const api = axios.create({
   baseURL: baseUrl,
   params: {
-    api_key: "00911ef8d2aadc4c5a6f1b5312a163ee",
+    api_key: process.env.REACT_APP_API_KEY,
     language: "pt-BR",
   },
 });
