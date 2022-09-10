@@ -3,13 +3,14 @@
 import SearchIcon from "@mui/icons-material/Search";
 import {
   FormControl,
-  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
   OutlinedInput,
 } from "@mui/material";
 import { Control, Controller } from "react-hook-form";
+
+import { useAppSelector } from "../../store/hooks";
 
 interface IInputSearch {
   control: Control<any>;
@@ -34,6 +35,9 @@ export function InputSearch({
   onClick,
   errorMessage,
 }: IInputSearch) {
+  const {
+    theme: { mode },
+  } = useAppSelector(({ Utils }) => Utils);
   return (
     <Controller
       name={name}
@@ -63,7 +67,7 @@ export function InputSearch({
               }
               label={label}
               style={{
-                backgroundColor: disabled ? "#f5f5f5" : "#fff",
+                backgroundColor: mode === "light" ? "#f5f5f5" : "#1e1e1e",
               }}
             />
           </FormControl>
